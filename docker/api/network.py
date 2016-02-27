@@ -66,11 +66,11 @@ class NetworkApiMixin(object):
                 raise InvalidVersion('IP address assignment is not '
                                      'supported in API version < 1.22')
 
-            data['EndpointConfig'][net_id] = dict()
+            data['EndpointConfig']['IPAMConfig'] = dict()
             if ipv4_address:
-                data['EndpointConfig'][net_id]['IPv4Address'] = ipv4_address
+                data['EndpointConfig']['IPAMConfig']['IPv4Address'] = ipv4_address
             if ipv6_address:
-                data['EndpointConfig'][net_id]['IPv6Address'] = ipv6_address
+                data['EndpointConfig']['IPAMConfig']['IPv6Address'] = ipv6_address
 
         url = self._url("/networks/{0}/connect", net_id)
         res = self._post_json(url, data=data)
